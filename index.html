@@ -1853,6 +1853,24 @@ footer {
   .reviews-grid.single .review-text { font-size: 1.1rem; }
 }
 
+/* laptop / desktop: scale the whole site up (all type is in rem) and widen the content area */
+@media (min-width: 1024px) {
+  html { font-size: 112.5%; }
+  .wrap { max-width: 1320px; }
+  .note-tile { width: 66px; }
+  .note-pic { width: 60px; height: 60px; }
+  .bundle-icon { width: 60px; height: 60px; }
+  .sc-card { flex-basis: 196px; }
+  .sc-card .stage { height: 224px; }
+  .sc-arrow { top: 112px; }
+  .q-ico { width: 48px; height: 48px; }
+  .cart-drawer { max-width: 460px; }
+}
+@media (min-width: 1400px) {
+  html { font-size: 118.75%; }
+  .wrap { max-width: 1400px; }
+}
+
 /* readability: lift the faint labels */
 :root { --dim: #8a8270; }
 .sc-tier-label { color: var(--gold); font-size: 0.6rem; opacity: 0.9; }
