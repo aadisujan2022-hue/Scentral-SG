@@ -1787,7 +1787,8 @@ footer {
 
 /* bundles now sit under the shop panel */
 #buy .bundle-strip { margin-top: 0; border-top: none; background: var(--bg); }
-.bundle h4, .bundle-icon { padding-left: 0.3em; } /* offsets letter-spacing so text is optically centred */
+.bundle h4 { padding-left: 0.3em; } /* offsets letter-spacing so text is optically centred */
+@media (max-width: 880px) { .bundle h4 { padding-left: 0.25em; } }
 
 /* collection list: names only */
 .col-list li .new-dot { color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.5rem; letter-spacing: 0.2em; margin-left: 8px; vertical-align: middle; border: 1px solid var(--border); padding: 2px 5px 2px 7px; }
@@ -1800,7 +1801,8 @@ footer {
 .q-opt { padding: 18px 18px 16px; }
 .q-ico { margin-bottom: 10px; }
 *, *::before, *::after { font-variant-numeric: lining-nums; }
-.bundle-icon { display: flex; align-items: center; justify-content: center; line-height: 1; padding-top: 0.06em; }
+.bundle-icon { display: flex; align-items: center; justify-content: center; line-height: 1; padding: 0; }
+.bundle-icon > span { display: block; text-box: trim-both cap alphabetic; }
 @media (max-width: 420px) { .q-options { gap: 8px; } .q-opt { padding: 14px 12px; font-size: 0.8rem; } }
 .rec-photo { width: 58px; height: 72px; flex: 0 0 58px; border: 1px solid var(--border2); }
 .rec-photo .bottle { height: 66%; }
@@ -1944,7 +1946,7 @@ footer {
       </div>
       <div class="hero-stat">
         <div class="stat-n">SG</div>
-        <div class="stat-l">Collection Only</div>
+        <div class="stat-l">Islandwide Delivery</div>
       </div>
     </div>
   </div>
@@ -2037,7 +2039,7 @@ footer {
       </div>
       <div class="step-card">
         <div class="step-num">04</div>
-        <div class="step-title">Collect or Delivered</div>
+        <div class="step-title">Delivered to You</div>
         <p class="step-body">We deliver anywhere in Singapore — flat S$5.50 delivery fee, free on orders over S$75.</p>
       </div>
     </div>
@@ -2128,22 +2130,22 @@ footer {
     </div>
     <div class="bundle-strip four">
       <div class="bundle">
-        <div class="bundle-icon">3</div>
+        <div class="bundle-icon"><span>3</span></div>
         <h4>Bundle of 3</h4>
         <p>Any 3 decants → <span style="color:var(--gold)">S$2 off</span></p>
       </div>
       <div class="bundle">
-        <div class="bundle-icon">5</div>
+        <div class="bundle-icon"><span>5</span></div>
         <h4>Bundle of 5</h4>
         <p>Any 5 decants → <span style="color:var(--gold)">S$6 off</span></p>
       </div>
       <div class="bundle">
-        <div class="bundle-icon">8</div>
+        <div class="bundle-icon"><span>8</span></div>
         <h4>Bundle of 8</h4>
         <p>Any 8 decants → <span style="color:var(--gold)">S$12 off</span></p>
       </div>
       <div class="bundle">
-        <div class="bundle-icon">12</div>
+        <div class="bundle-icon"><span>12</span></div>
         <h4>Bundle of 12</h4>
         <p>Any 12 decants → <span style="color:var(--gold)">S$20 off</span></p>
       </div>
