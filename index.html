@@ -1796,7 +1796,8 @@ footer {
 .q-options { grid-template-columns: 1fr 1fr; }
 .q-opt { padding: 18px 18px 16px; }
 .q-ico { margin-bottom: 10px; }
-.size-vol, .sc-card-price, .size-pill, .summary-line, .price { font-variant-numeric: lining-nums; }
+*, *::before, *::after { font-variant-numeric: lining-nums; }
+.bundle-icon { display: flex; align-items: center; justify-content: center; line-height: 1; padding-top: 0.06em; }
 @media (max-width: 420px) { .q-options { gap: 8px; } .q-opt { padding: 14px 12px; font-size: 0.8rem; } }
 .rec-photo { width: 58px; height: 72px; flex: 0 0 58px; border: 1px solid var(--border2); }
 .rec-photo .bottle { height: 66%; }
