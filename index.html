@@ -1852,6 +1852,57 @@ footer {
   .reviews-grid.single .review-card { padding: 68px 22px 30px; }
   .reviews-grid.single .review-text { font-size: 1.1rem; }
 }
+
+/* readability: lift the faint labels */
+:root { --dim: #8a8270; }
+.sc-tier-label { color: var(--gold); font-size: 0.6rem; opacity: 0.9; }
+.shop-total .lbl { color: var(--gold); }
+/* letter-spaced caps leave a trailing gap; indent by the same amount so the words sit truly centred */
+.btn-primary { text-indent: 0.28em; justify-content: center; text-align: center; }
+.btn-ghost { text-indent: 0.28em; justify-content: center; }
+.sc-filter { text-indent: 0.25em; }
+.nav-cart { text-indent: 0; }
+/* cart button: icon, gold when it holds items, little bump when something is added */
+.nav-cart { display: inline-flex; align-items: center; gap: 8px; }
+.nav-cart .bag { flex: none; }
+.nav-cart .cart-count { margin-left: 0; }
+.nav-cart.has-items { background: var(--gold); border-color: var(--gold); color: var(--bg); }
+.nav-cart.has-items .cart-count { background: var(--bg); color: var(--gold); }
+.nav-cart.has-items:hover { background: var(--gold2); color: var(--bg); }
+.nav-cart.bump { animation: cartBump .5s cubic-bezier(.3,1.6,.5,1); }
+@keyframes cartBump { 0% { transform: scale(1); } 35% { transform: scale(1.12); } 100% { transform: scale(1); } }
+/* cart drawer refresh */
+.cart-head h3 .ch-count { font-family: 'Inter', sans-serif; letter-spacing: 0; text-transform: none; font-size: 0.78rem; color: var(--gray); margin-left: 6px; }
+.cart-drawer .cart-line.v2 { display: grid; grid-template-columns: 64px 1fr auto; gap: 14px; align-items: start; text-align: left; padding: 16px 0; border-bottom: 1px solid var(--border2); }
+.cart-line.v2 .cl-thumb { width: 64px; height: 80px; background: #0b0a08; border: 1px solid var(--border2); overflow: hidden; }
+.cart-line.v2 .cl-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cart-line.v2 h4 { text-align: left; font-size: 0.98rem; line-height: 1.3; margin: 0; }
+.cart-line.v2 .meta { text-align: left; font-family: 'Inter', sans-serif; letter-spacing: 0.02em; text-transform: none; font-size: 0.74rem; color: var(--gray); margin-top: 4px; }
+.cart-line.v2 .cl-row { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+.cart-line.v2 .qty-mini { margin-top: 0; justify-content: flex-start; }
+.cart-line.v2 .price { margin-top: 0; font-family: 'Playfair Display', serif; font-size: 1.02rem; color: var(--gold); }
+.cart-line.v2 .remove { width: 30px; height: 30px; font-size: 1.15rem; line-height: 1; color: var(--gray); border: 1px solid transparent; justify-self: end; margin: -4px -6px 0 0; padding: 0; }
+.cart-line.v2 .remove:hover { color: #e07a7a; border-color: var(--border2); }
+.cart-suggest { margin-top: 26px; }
+.cs-title { font-family: 'Cinzel', serif; font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.cs-item { display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: center; padding: 10px 0; border-top: 1px solid var(--border2); }
+.cs-thumb { width: 44px; height: 55px; overflow: hidden; background: #0b0a08; }
+.cs-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cs-name { font-family: 'Playfair Display', serif; font-size: 0.86rem; color: var(--cream); line-height: 1.3; }
+.cs-price { font-size: 0.72rem; color: var(--gray); margin-top: 3px; }
+.cs-add { background: transparent; border: 1px solid var(--border); color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.56rem; letter-spacing: 0.2em; text-indent: 0.2em; text-transform: uppercase; padding: 9px 12px; cursor: pointer; white-space: nowrap; transition: border-color .2s, background .2s; }
+.cs-add:hover { border-color: var(--gold); background: rgba(200,168,107,0.08); }
+.cart-empty.v2 { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 48px 20px 10px; color: var(--gray); }
+.cart-empty.v2 svg { color: var(--gold); opacity: 0.7; }
+.cart-empty.v2 p { margin: 0; font-size: 0.92rem; }
+.delivery-banner .prog { height: 3px; background: rgba(200,168,107,0.14); margin-top: 10px; overflow: hidden; }
+.delivery-banner .prog i { display: block; height: 100%; background: var(--gold); transition: width .5s ease; }
+@media (max-width: 420px) {
+  .cart-drawer .cart-line.v2 { grid-template-columns: 56px 1fr auto; gap: 12px; text-align: left; }
+  .cart-line.v2 .cl-thumb { width: 56px; height: 70px; }
+  .cart-line.v2 .qty-mini { justify-content: flex-start; }
+}
+
 </style>
 </head>
 <body>
@@ -1883,7 +1934,7 @@ footer {
     <li><a href="#collection">Collection</a></li>
     <li><a href="#buy">Shop</a></li>
     <li><a href="#" id="openQuiz">Find My Scent</a></li>
-    <li><button class="nav-cart" id="openCart">Cart <span class="cart-count" id="cartCount">0</span></button></li>
+    <li><button class="nav-cart" id="openCart" aria-label="Open cart"><svg class="bag" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 7h12l-1.5 12h-9z"/><path d="M9 7V5.5a3 3 0 0 1 6 0V7"/></svg><span class="nc-label">Cart</span><span class="cart-count" id="cartCount">0</span></button></li>
   </ul>
 
   <!-- Mobile-only controls -->
@@ -2340,7 +2391,7 @@ footer {
 <!-- ─── CART DRAWER ─── -->
 <div class="cart-drawer" id="cartDrawer">
   <div class="cart-head">
-    <h3>Your Cart</h3>
+    <h3>Your Cart <span class="ch-count" id="cartHeadCount"></span></h3>
     <button class="modal-close" id="cartClose" style="position:static;">×</button>
   </div>
   <div class="cart-body" id="cartBody"></div>
@@ -2698,6 +2749,34 @@ function deliveryFee(cart, totalAfterDiscount) {
   return { amt: 5.50, label: 'Delivery', free: false };
 }
 
+function progBar(f) { const p = Math.max(4, Math.min(100, Math.round(f * 100))); return `<div class="prog"><i style="width:${p}%"></i></div>`; }
+function cartSuggestHTML() {
+  const inCart = new Set(cart.map(l => l.id));
+  const pool = CATALOG.filter(c => !inCart.has(c.id) && c.cat !== 'promo');
+  const ranked = pool.filter(c => c.popularity === 'top').concat(pool.filter(c => c.isNew), pool);
+  const picks = [...new Map(ranked.map(c => [c.id, c])).values()].slice(0, 3);
+  if (!picks.length) return '';
+  return `<div class="cart-suggest"><div class="cs-title">${cart.length ? 'Add to your order' : 'Popular right now'}</div>` +
+    picks.map(c => {
+      const size = SIZE_ORDER.find(s => c.sizes[s] !== undefined);
+      return `<div class="cs-item">
+        <div class="cs-thumb"><img src="${SCENE_IMG[c.id] || ''}" alt=""></div>
+        <div class="cs-info"><div class="cs-name">${cleanName(c.name)}</div><div class="cs-price">${size}ml · ${fmt(c.sizes[size])}</div></div>
+        <button class="cs-add" data-add="${c.id}" aria-label="Add ${cleanName(c.name)}">+ Add</button>
+      </div>`;
+    }).join('') + `</div>`;
+}
+function wireCartSuggest(root) {
+  root.querySelectorAll('[data-add]').forEach(b => b.addEventListener('click', () => {
+    const c = CATALOG.find(x => x.id === b.dataset.add); if (!c) return;
+    const size = SIZE_ORDER.find(s => c.sizes[s] !== undefined);
+    const key = c.id + '|' + size + '|' + buyState.collect;
+    const ex = cart.find(l => l.key === key);
+    if (ex) ex.qty += 1;
+    else cart.push({ key, id: c.id, name: c.name.replace(/\s*[⭐✨].*/, ''), cat: c.cat, size, qty: 1, unit: c.sizes[size], collect: buyState.collect });
+    saveCart(); renderCart();
+  }));
+}
 function renderCart() {
   const body = document.getElementById('cartBody');
   const foot = document.getElementById('cartFoot');
@@ -2706,31 +2785,49 @@ function renderCart() {
     const el = document.getElementById(id);
     if (el) el.textContent = totalQty;
   });
+  ['openCart', 'openCartMobile'].forEach(id => {
+    const b = document.getElementById(id); if (!b) return;
+    b.classList.toggle('has-items', totalQty > 0);
+    if (totalQty > (window.__lastCartQty || 0)) { b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump'); }
+  });
+  window.__lastCartQty = totalQty;
+  const hc = document.getElementById('cartHeadCount');
+  if (hc) hc.textContent = totalQty ? `· ${totalQty} item${totalQty === 1 ? '' : 's'}` : '';
 
   if (!cart.length) {
-    body.innerHTML = `<div class="cart-empty">
-      Your cart is empty.<br><br>
-      <span style="color:var(--gold);font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.3em;">Build a decant in the BUY section</span>
-    </div>`;
+    body.innerHTML = `<div class="cart-empty v2">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M6 7h12l-1.5 12h-9z"/><path d="M9 7V5.5a3 3 0 0 1 6 0V7"/></svg>
+      <p>Your cart is empty.</p>
+      <button class="btn-primary" id="cartBrowse">Browse the Shop</button>
+    </div>` + cartSuggestHTML();
+    wireCartSuggest(body);
+    const cb = document.getElementById('cartBrowse');
+    if (cb) cb.addEventListener('click', () => { closeCart(); document.getElementById('buy').scrollIntoView({behavior: 'smooth'}); });
     foot.style.display = 'none';
     return;
   }
 
-  body.innerHTML = cart.map((l, i) => `
-    <div class="cart-line">
-      <div>
+  body.innerHTML = cart.map((l, i) => {
+    const img = (typeof STAGE_IMG !== 'undefined' && STAGE_IMG[l.id]) || SCENE_IMG[l.id] || '';
+    return `
+    <div class="cart-line v2">
+      <div class="cl-thumb">${img ? `<img src="${img}" alt="">` : ''}</div>
+      <div class="cl-main">
         <h4>${l.name}</h4>
-        <div class="meta">${l.size}ML</div>
-        <div class="qty-mini">
-          <button data-act="dec" data-i="${i}">−</button>
-          <span>${l.qty}</span>
-          <button data-act="inc" data-i="${i}">+</button>
+        <div class="meta">${l.size}ml decant · ${fmt(l.unit)} each</div>
+        <div class="cl-row">
+          <div class="qty-mini">
+            <button data-act="dec" data-i="${i}" aria-label="One less">−</button>
+            <span>${l.qty}</span>
+            <button data-act="inc" data-i="${i}" aria-label="One more">+</button>
+          </div>
+          <div class="price">${fmt(l.unit * l.qty)}</div>
         </div>
-        <div class="price">${fmt(l.unit)} × ${l.qty} = ${fmt(l.unit * l.qty)}</div>
       </div>
-      <button class="remove" data-act="rm" data-i="${i}">Remove</button>
-    </div>
-  `).join('');
+      <button class="remove" data-act="rm" data-i="${i}" aria-label="Remove ${l.name}">×</button>
+    </div>`;
+  }).join('') + cartSuggestHTML();
+  wireCartSuggest(body);
 
   body.querySelectorAll('button[data-act]').forEach(b => {
     b.addEventListener('click', () => {
@@ -2772,14 +2869,14 @@ function renderCart() {
   if (totalDecants > 0) {
     if (disc.amt > 0 && disc.nextTier) {
       const need = disc.nextTier.qty - totalDecants;
-      bundleBanner.innerHTML = `<span class="ok">✓ ${disc.label}</span> — add <b>${need}</b> more decant${need===1?'':'s'} for <b>${disc.nextTier.label.split(' — ')[1]}</b>.`;
+      bundleBanner.innerHTML = `<span class="ok">✓ ${disc.label}</span> — add <b>${need}</b> more decant${need===1?'':'s'} for <b>${disc.nextTier.label.split(' — ')[1]}</b>.` + progBar(totalDecants / disc.nextTier.qty);
       bundleBanner.classList.add('on');
     } else if (disc.amt > 0) {
-      bundleBanner.innerHTML = `<span class="ok">✓ ${disc.label}</span> — top tier unlocked.`;
+      bundleBanner.innerHTML = `<span class="ok">✓ ${disc.label}</span> — top tier unlocked.` + progBar(1);
       bundleBanner.classList.add('on');
     } else if (disc.nextTier) {
       const need = disc.nextTier.qty - totalDecants;
-      bundleBanner.innerHTML = `Add <b>${need}</b> more decant${need===1?'':'s'} to unlock <b>${disc.nextTier.label.split(' — ')[1]}</b>.`;
+      bundleBanner.innerHTML = `Add <b>${need}</b> more decant${need===1?'':'s'} to unlock <b>${disc.nextTier.label.split(' — ')[1]}</b>.` + progBar(totalDecants / disc.nextTier.qty);
       bundleBanner.classList.remove('on');
     }
     bundleBanner.style.display = 'block';
@@ -2798,11 +2895,11 @@ function renderCart() {
   }
   if (hasDelivery) {
     if (afterDiscount >= 75) {
-      banner.innerHTML = `<span class="ok">✓ Free delivery unlocked</span> — anywhere in Singapore.`;
+      banner.innerHTML = `<span class="ok">✓ Free delivery unlocked</span> — anywhere in Singapore.` + progBar(1);
       banner.classList.add('on');
     } else {
       const left = 75 - afterDiscount;
-      banner.innerHTML = `Add <b>${fmt(left)}</b> more for free delivery — otherwise delivery is a flat <b>S$5.50</b>.`;
+      banner.innerHTML = `Add <b>${fmt(left)}</b> more for free delivery — otherwise delivery is a flat <b>S$5.50</b>.` + progBar(afterDiscount / 75);
       banner.classList.remove('on');
     }
     banner.style.display = 'block';
